@@ -12,7 +12,7 @@ var layInput = new Layer(1)
 var laysHidden = [];
 for (let i = 0; i < 14; i++) {
     laysHidden[i] = new Layer(2 ^ (i + 1));
-    laysHidden[i - 1].project(laysHidden[i]);
+    ((i == 0) ? layInput : laysHidden[i - 1]).project(laysHidden[i]);
 }
 laysHidden[14] = new Layer(49152);
 laysHidden[13].project(laysHidden[14]);
