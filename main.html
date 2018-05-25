@@ -38,23 +38,15 @@ var gen = function(c) {
         }
     }
     return [randNum, o];
-}
+};
 
 var prop = 0.3;
 var fix = function(randNum, in) {
     net.activate([randNum]);
     net.propagate(prop, in);
-}
+};
 
-var c1Num = gen(c1D);
-var c1Out = c1Num[1];
-var c1Num = c1Num[0];
-
-var c2Num = gen(c2D);
-var c2Out = c2Num[1];
-var c2Num = c2Num[0];
-var update = function(isFirst) {
-    fix(isFirst ? c1Num : c2Num, isFirst ? c2Num : c1Num);
+var regen = function() {
     c1Num = gen(c1D);
     c1Out = c1Num[1];
     c1Num = c1Num[0];
@@ -62,7 +54,21 @@ var update = function(isFirst) {
     c2Num = gen(c2D);
     c2Out = c2Num[1];
     c2Num = c2Num[0];
-}
+};
+
+document.addEventListener("load", regen);
+
+var c1Num = null;
+var c1Out = null;
+var c1Num = null;
+
+var c2Num = null;
+var c2Out = null;
+var c2Num = null;
+function update(isFirst) {
+    fix(isFirst ? c1Num : c2Num, isFirst ? c2Num : c1Num);
+    regen();
+};
 
 </script>
 </head>
