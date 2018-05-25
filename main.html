@@ -2,7 +2,6 @@
 <head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/synaptic/1.1.4/synaptic.min.js"></script>
 <script>
-
 var c1D = document.getElementByID("c1").getContext("2d");
 var c2D = document.getElementByID("c2").getContext("2d");
 
@@ -41,9 +40,9 @@ var gen = function(c) {
 };
 
 var prop = 0.3;
-var fix = function(randNum, in) {
+var fix = function(randNum, outputE) {
     net.activate([randNum]);
-    net.propagate(prop, in);
+    net.propagate(prop, outputE);
 };
 
 var regen = function() {
@@ -69,7 +68,6 @@ function update(isFirst) {
     fix(isFirst ? c1Num : c2Num, isFirst ? c2Num : c1Num);
     regen();
 };
-
 </script>
 </head>
 <body>
