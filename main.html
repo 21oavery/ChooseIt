@@ -1,0 +1,77 @@
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/synaptic/1.1.4/synaptic.min.js">
+<script>
+
+var c1D = document.getElementByID("c1").getContext("2d");
+var c2D = document.getElementByID("c2").getContext("2d");
+
+var Layer = synaptic.Layer;
+var Network = synaptic.Network;
+
+var layInput = new Layer(1)
+var laysHidden = [];
+for (let i = 0; i < 14; i++) {
+    laysHidden[i] = new Layer(2 ^ (i + 1));
+    laysHidden[i - 1].project(laysHidden[i]);
+}
+laysHidden[14] = new Layer(49152);
+laysHidden[13].project(laysHidden[14]);
+var layOutput = new Layer(49152);
+laysHidden[14].project(layOutput);
+
+var net = new Network({
+    input: layInput,
+    hidden: laysHidden,
+    output: layOutput
+});
+
+var gen = function(c) {
+    var randNum = Math.random();
+    var o = net.activate([randNum]);
+    var p = c.createImageData(1, 1);
+    var d = p.data;
+    for (var x = 0; x < 128; x++) {
+        for (var y = 0; y < 128; y++) {
+            for (let j = 0; j < 3; j++) d[j] = o[(x + y * 128) * 3 + j];
+            c.putImageData(p, x, y);
+        }
+    }
+    return [randNum, o];
+}
+
+var prop = 0.3;
+var fix = function(randNum, in) {
+    net.activate([randNum]);
+    net.propagate(prop, in);
+}
+
+var c1Num = gen(c1D);
+var c1Out = c1Num[1];
+var c1Num = c1Num[0];
+
+var c2Num = gen(c2D);
+var c2Out = c2Num[1];
+var c2Num = c2Num[0];
+var update = function(isFirst) {
+    fix(isFirst ? c1Num : c2Num, isFirst ? c2Num : c1Num);
+    c1Num = gen(c1D);
+    c1Out = c1Num[1];
+    c1Num = c1Num[0];
+    
+    c2Num = gen(c2D);
+    c2Out = c2Num[1];
+    c2Num = c2Num[0];
+}
+
+</script>
+</head>
+<body>
+
+<canvas id="c1" height=128 width=128>
+<canvas id="c2" height=128 width=128>
+<br>
+<button onclick="update(true)">Option #1</button>
+<button onclick="update(false)">Option #2</button>
+</body>
+</html>
