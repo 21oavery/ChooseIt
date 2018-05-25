@@ -2,8 +2,8 @@
 <head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/synaptic/1.1.4/synaptic.min.js"></script>
 <script>
-var c1D = document.getElementById("c1").getContext("2d");
-var c2D = document.getElementById("c2").getContext("2d");
+var c1D = null;
+var c2D = null;
 
 var Layer = synaptic.Layer;
 var Network = synaptic.Network;
@@ -55,7 +55,11 @@ var regen = function() {
     c2Num = c2Num[0];
 };
 
-document.addEventListener("load", regen);
+document.addEventListener("load", function() {
+    regen();
+    c1D = document.getElementById("c1").getContext("2d");
+    c2D = document.getElementById("c2").getContext("2d");
+});
 
 var c1Num = null;
 var c1Out = null;
