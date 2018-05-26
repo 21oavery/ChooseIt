@@ -38,6 +38,7 @@ var disp = function() {
 
 document.addEventListener("load", function() {
     c1D = document.getElementById("c1").getContext("2d");
+    console.log(c1D);
     img1 = c1D.createImageData(128, 128);
     console.log(img1);
     randomiseImage(img1, 1);
