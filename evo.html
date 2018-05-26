@@ -24,8 +24,9 @@ var randomiseImage = function(i, m) {
     for (var y = 0; y < 128; y++) {
         for (var x = 0; x < 128; x++) {
             if (Math.random() >= (1 / m)) continue;
-            r = modColor(d[(x + y * 128) * 3], d[(x + y * 128) * 3 + 1], d[(x + y * 128) * 3 + 2]);
-            for (let j = 0; j < 3; j++) d[(x + y * 128) * 3 + j] = r[j];
+            d[(x + y * 128) * 4 + 3] = 255;
+            r = modColor(d[(x + y * 128) * 4], d[(x + y * 128) * 4 + 1], d[(x + y * 128) * 4 + 2]);
+            for (let j = 0; j < 3; j++) d[(x + y * 128) * 4 + j] = r[j];
         }
     }
 };
