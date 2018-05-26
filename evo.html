@@ -8,12 +8,12 @@ var img1 = null;
 var img2 = null;
 
 var modColor = function(r, g, b) {
-    var r = Math.floor(Math.random() * 8);
-    if (r >= 4) r = Math.floor(Math.random() * 256);
-    r -= 4;
-    if (r >= 2) g = Math.floor(Math.random() * 256);
-    r -= 2;
-    if (r >= 1) b = Math.floor(Math.random() * 256);
+    var rn = Math.floor(Math.random() * 8);
+    if (rn >= 4) r = Math.floor(Math.random() * 256);
+    rn -= 4;
+    if (rn >= 2) g = Math.floor(Math.random() * 256);
+    rn -= 2;
+    if (rn >= 1) b = Math.floor(Math.random() * 256);
     return [r, g, b];
 }
 
