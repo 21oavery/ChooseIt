@@ -10,11 +10,11 @@ var img2 = null;
 
 var modColor = function(r, g, b) {
     var r = Math.floor(Math.random() * 8);
-    if (r >= 4) r = Math.random() * 256;
+    if (r >= 4) r = Math.floor(Math.random() * 256);
     r -= 4;
-    if (r >= 2) g = Math.random() * 256;
+    if (r >= 2) g = Math.floor(Math.random() * 256);
     r -= 2;
-    if (r >= 1) b = Math.random() * 256;
+    if (r >= 1) b = Math.floor(Math.random() * 256);
     return [r, g, b];
 }
 
