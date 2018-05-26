@@ -32,13 +32,16 @@ var randomiseImage = function(i, m) {
 
 var disp = function() {
     c1D.putImageData(img1, 0, 0);
+    console.log(img1);
     c2D.putImageData(img2, 0, 0);
 };
 
 document.addEventListener("load", function() {
     c1D = document.getElementById("c1").getContext("2d");
     img1 = c1D.createImageData(128, 128);
+    console.log(img1);
     randomiseImage(img1, 1);
+    console.log(img1);
     c2D = document.getElementById("c2").getContext("2d");
     img2 = c2D.createImageData(128, 128);
     randomiseImage(img2, 1);
