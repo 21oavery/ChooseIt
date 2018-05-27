@@ -36,7 +36,7 @@ var disp = function() {
     c2D.putImageData(img2, 0, 0);
 };
 
-document.addEventListener("load", function() {
+window.addEventListener("load", function() {
     c1D = document.getElementById("c1").getContext("2d");
     console.log(c1D);
     img1 = c1D.createImageData(128, 128);
